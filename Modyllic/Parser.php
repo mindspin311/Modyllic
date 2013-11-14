@@ -1186,7 +1186,9 @@ class Modyllic_Parser {
             $key->weak = true;
         }
         $key->references['table'] = $this->get_ident();
-
+        if ($this->maybe('.')) {
+          $key->references['table'] .= '.' . $this->get_ident();
+        }
         $this->get_symbol('(');
         $key->references['columns'] = $this->get_array();
 
